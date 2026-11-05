@@ -123,19 +123,24 @@ docker-assignment/
 ## 8. 스크린샷
 
 ### 1) Docker Version
-![Docker Version](./screenshots/01-docker-version.png)
+<img width="741" height="117" alt="01-docker-version" src="https://github.com/user-attachments/assets/9c920e26-b919-470e-9661-9c02e559f757" />
+
 
 ### 2) Docker Info
-![Docker Info](./screenshots/02-docker-info.png)
+<img width="390" height="852" alt="02-docker-info" src="https://github.com/user-attachments/assets/5c971847-dedc-493b-abc9-0f9244494a74" />
+
 
 ### 3) Hello World
-![Hello World](./screenshots/03-hello-world.png)
+<img width="912" height="602" alt="03-hello-world" src="https://github.com/user-attachments/assets/53fe4366-c41d-4a98-b11f-441b39d0dc00" />
+
 
 ### 4) Ubuntu Run
-![Ubuntu Run](./screenshots/04-ubuntu-run.png)
+<img width="937" height="172" alt="04-ubuntu-run" src="https://github.com/user-attachments/assets/4cb66b99-ce42-4a86-a620-36bb672a7d21" />
+
 
 ### 5) Linux Commands
-![Linux Commands](./screenshots/05-linux-commands.png)
+<img width="767" height="827" alt="05-linux-commands" src="https://github.com/user-attachments/assets/416a720d-b6a0-44ed-8611-7e9276f9b157" />
+
 
 ---
 
