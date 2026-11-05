@@ -32,7 +32,7 @@ docker-assignment/
 ## 4. Docker 버전 확인
 
 ### 실행 명령
-```powershell
+```powershell 
 docker --version
 ```
 
