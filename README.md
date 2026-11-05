@@ -159,17 +159,3 @@ docker-assignment/
 ```
 
 ---
-
-## 붙여넣은 뒤 확인할 것
-1. `README.md` 저장
-2. VS Code에서 미리보기 열기 (`Ctrl + Shift + V`)
-3. 이미지 5장이 모두 보이는지 확인
-4. 안 보이면 파일명이 정확히 아래와 같은지 확인
-   - `01-docker-version.png`
-   - `02-docker-info.png`
-   - `03-hello-world.png`
-   - `04-ubuntu-run.png`
-   - `05-linux-commands.png`
-
-원하면 다음엔 제가 바로 이어서  
-**GitHub 업로드 명령어도 복붙용으로 한 번에** 정리해드릴게요.
