@@ -1,223 +1,144 @@
-# Docker 실습 보고서
+# Windows Docker 개발환경 과제
 
-## 1. 실습 개요
-본 문서는 Windows 환경에서 Docker Desktop을 설치하고, 컨테이너 및 이미지 실습, Dockerfile 빌드, 포트 매핑, 볼륨 마운트, GitHub 업로드까지 수행한 결과를 정리한 보고서이다.
+## 1. 과제 개요
+이 과제는 Windows 환경에서 Docker Desktop을 설치하고 실행한 뒤, Docker 버전 확인, Docker 실행 환경 점검, Hello World 컨테이너 실행, Ubuntu 컨테이너 접속 및 Linux 명령어 실습을 수행한 결과를 정리한 것이다.
 
 ---
 
 ## 2. 개발 환경
 - 운영체제: Windows
-- 편집기: VS Code
-- 형상관리: Git, GitHub
-- 컨테이너 도구: Docker Desktop (WSL2 기반)
+- 컨테이너 도구: Docker Desktop
+- 편집기: Visual Studio Code
+- 버전 관리 도구: Git
 
 ---
 
-## 3. 프로젝트 구조
-
+## 3. 프로젝트 폴더 구조
 ```text
 docker-assignment/
 ├─ README.md
 ├─ Dockerfile
 ├─ index.html
 └─ screenshots/
+   ├─ 01-docker-version.png
+   ├─ 02-docker-info.png
+   ├─ 03-hello-world.png
+   ├─ 04-ubuntu-run.png
+   └─ 05-linux-commands.png
 ```
-
-- `README.md`: 실습 과정과 실행 결과를 정리한 문서
-- `Dockerfile`: 사용자 정의 이미지를 빌드하기 위한 설정 파일
-- `index.html`: 포트 매핑 테스트용 웹 페이지
-- `screenshots/`: 실행 결과 캡처 이미지 저장 폴더
 
 ---
 
-## 4. Docker 버전 및 실행 환경 확인
+## 4. Docker 버전 확인
 
 ### 실행 명령
-
 ```powershell
 docker --version
+```
+
+### 설명
+Docker가 정상적으로 설치되었는지 확인하기 위해 버전 정보를 조회하였다.  
+명령어 실행 결과를 통해 Docker 명령이 정상적으로 동작함을 확인하였다.
+
+### 실행 화면
+![Docker 버전 확인](screenshots/01-docker-version.png)
+
+---
+
+## 5. Docker 실행 환경 확인
+
+### 실행 명령
+```powershell
 docker info
 ```
 
-### 실행 결과
-
-```powershell
-PS C:\Users\hjoos> docker --version
-Docker version 29.9.2, build a82e528
-
-PS C:\Users\hjoos> docker info
-Client:
- Version:    29.9.2
- Context:    desktop-linux
- Debug Mode: false
- Plugins:
-  agent: Docker AI Agent Runner (Docker Inc.)
-    Version:  v1.152.0
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-agent.exe
-  ai: Docker AI Agent - Ask Gordon (Docker Inc.)
-    Version:  v1.33.0
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-ai.exe
-  buildx: Docker Buildx (Docker Inc.)
-    Version:  v0.38.1
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-buildx.exe
-  compose: Docker Compose (Docker Inc.)
-    Version:  v5.6.1
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-compose.exe
-  debug: Get a shell into any image or container (Docker Inc.)
-    Version:  0.49.0
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-debug.exe
-  desktop: Docker Desktop commands (Docker Inc.)
-    Version:  4.98.0
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-desktop.exe
-  dhi: CLI for managing Docker Hardened Images (Docker Inc.)
-    Version:  v0.0.9
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-dhi.exe
-  extension: Manages Docker extensions (Docker Inc.)
-    Version:  v0.2.32
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-extension.exe
-  init: Creates Docker-related starter files for your project (Docker Inc.)
-    Version:  v1.4.1
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-init.exe
-  mcp: Docker MCP Plugin (Docker Inc.)
-    Version:  v0.44.2
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-mcp.exe
-  model: Docker Model Runner (Docker Inc.)
-    Version:  v1.2.9
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-model.exe
-  offload: Docker Offload (Docker Inc.)
-    Version:  v0.7.35
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-offload.exe
-  pass: Docker Pass Secrets Manager Plugin (beta) (Docker Inc.)
-    Version:  v0.3.2
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-pass.exe
-  sandbox: "docker sandbox" is deprecated, use Docker Sandboxes instead (Docker Inc.)
-    Version:  v0.13.0
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-sandbox.exe
-  scout: Docker Scout (Docker Inc.)
-    Version:  v1.27.0
-    Path:     C:\Users\hjoos\.docker\cli-plugins\docker-scout.exe
-
-Server:
- Containers: 0
-  Running: 0
-  Paused: 0
-  Stopped: 0
- Images: 0
- Server Version: 29.9.2
- Storage Driver: overlayfs
-  driver-type: io.containerd.snapshotter.v1
- Logging Driver: local
- Cgroup Driver: cgroupfs
- Cgroup Version: 2
- Plugins:
-  Volume: local
-  Network: bridge host ipvlan macvlan null overlay
-  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
- CDI spec directories:
-  /etc/cdi
-  /var/run/cdi
- Discovered Devices:
-  cdi: docker.com/gpu=webgpu
- Swarm: inactive
- Runtimes: io.containerd.runc.v2 nvidia runc
- Default Runtime: runc
- Init Binary: docker-init
- containerd version: b7a25261e029d68978bbf290df0a62fc819b3c51
- runc version: v1.5.2-0-g29dd3dc2
- init version: de40ad0
- Security Options:
-  seccomp
-   Profile: builtin
-  cgroupns
- Kernel Version: 6.18.54.1-microsoft-standard-WSL2
- Operating System: Docker Desktop
- OSType: linux
- Architecture: x86_64
- CPUs: 12
- Total Memory: 7.43GiB
- Name: docker-desktop
- ID: ec7c45c7-02e5-4a74-bc10-afaeebc246e9
- Docker Root Dir: /var/lib/docker
- Debug Mode: false
- HTTP Proxy: http.docker.internal:3128
- HTTPS Proxy: http.docker.internal:3128
- No Proxy: hubproxy.docker.internal
- Labels:
-  com.docker.desktop.address=npipe://\\.\pipe\docker_cli
- Experimental: false
- Insecure Registries:
-  hubproxy.docker.internal:5555
-  127.0.0.0/8
-  ::1/128
- Live Restore Enabled: false
- Firewall Backend: iptables
-```
-
-![Docker 버전 확인](screenshots/01-docker-version.png)
-![Docker 정보 확인](screenshots/02-docker-info.png)
-
 ### 설명
-- `docker --version` 명령을 통해 설치된 Docker 버전을 확인하였다.
-- `docker info` 명령을 통해 Docker 클라이언트와 서버 정보, 실행 환경, 운영체제, 커널 버전 등을 확인하였다.
-- 출력 결과를 통해 Docker Desktop이 정상적으로 실행 중이며, WSL2 기반 Linux 환경에서 동작하고 있음을 확인하였다.
+Docker 클라이언트와 서버의 상태를 확인하였다.  
+이 명령을 통해 Docker Desktop이 정상적으로 실행 중인지, 컨테이너 환경이 올바르게 구성되어 있는지 확인할 수 있다.
 
-![Docker 버전 확인](screenshots/01-docker-version.png)
-![Docker 정보 확인](screenshots/02-docker-info.png)
-
-### 설명
-- `docker --version`은 Docker CLI 버전을 확인하는 명령이다.
-- `docker info`는 Docker 데몬이 정상 동작 중인지 확인하는 데 사용하였다.
+### 실행 화면
+![Docker 실행 환경 확인](screenshots/02-docker-info.png)
 
 ---
 
-## 5. hello-world 실행 결과
+## 6. Hello World 컨테이너 실행
 
 ### 실행 명령
-
 ```powershell
 docker run hello-world
 ```
 
-### 실행 결과
-
-```powershell
-[여기에 실제 출력 붙여넣기]
-```
-
-![hello-world 실행 결과](screenshots/03-hello-world.png)
-
 ### 설명
-`hello-world` 이미지는 Docker 설치와 실행이 정상인지 가장 간단하게 확인할 수 있는 테스트용 이미지이다.
+`hello-world` 이미지를 실행하여 Docker가 이미지를 정상적으로 내려받고 컨테이너를 실행하는지 확인하였다.  
+출력 결과의 `Hello from Docker!` 메시지를 통해 Docker 환경이 정상적으로 동작함을 확인하였다.
+
+### 실행 화면
+![Hello World 실행](screenshots/03-hello-world.png)
 
 ---
 
-## 6. Docker 이미지 목록 확인
+## 7. Ubuntu 컨테이너 실행
 
 ### 실행 명령
-
 ```powershell
-docker images
+docker run -it ubuntu bash
 ```
-
-### 실행 결과
-
-```powershell
-[여기에 실제 출력 붙여넣기]
-```
-
-![Docker 이미지 목록](screenshots/04-docker-images.png)
 
 ### 설명
-이 명령으로 현재 로컬에 저장된 이미지 목록을 확인하였다.
+Ubuntu 이미지를 기반으로 컨테이너를 실행하고 bash 셸에 접속하였다.  
+이를 통해 컨테이너 내부에서 Linux 명령어를 직접 실습할 수 있는 환경을 구성하였다.
+
+### 실행 화면
+![Ubuntu 컨테이너 실행](screenshots/04-ubuntu-run.png)
 
 ---
 
-## 7. Ubuntu 컨테이너 실습
+## 8. Ubuntu 컨테이너 내부 Linux 명령어 실습
 
-### 실행 명령
-
-```powershell
-docker run -it --name ubuntu-practice ubuntu bash
+### 실행 명령 예시
+```bash
+pwd
+ls
+whoami
+mkdir practice
+touch practice/test.txt
+cat practice/test.txt
+cp practice/test.txt practice/test2.txt
+mv practice/test2.txt practice/renamed.txt
+chmod 755 practice
+rm practice/renamed.txt
 ```
 
-컨테이너 내부에서 아래 명령을 실행하였다.
+### 설명
+Ubuntu 컨테이너 내부에서 기본적인 Linux 명령어를 실습하였다.
+
+- `pwd`: 현재 작업 디렉터리 확인
+- `ls`: 디렉터리 내부 파일 목록 확인
+- `whoami`: 현재 사용자 확인
+- `mkdir`: 디렉터리 생성
+- `touch`: 파일 생성
+- `cat`: 파일 내용 확인
+- `cp`: 파일 복사
+- `mv`: 파일 이동 또는 이름 변경
+- `chmod`: 파일 또는 디렉터리 권한 변경
+- `rm`: 파일 삭제
+
+이 과정을 통해 컨테이너 내부에서 파일 시스템을 다루는 기본 방법을 익혔다.
+
+### 실행 화면
+![Linux 명령어 실습](screenshots/05-linux-commands.png)
+
+---
+
+## 9. Dockerfile 및 HTML 파일 생성
+
+### 설명
+과제 폴더 안에 `Dockerfile`과 `index.html` 파일을 생성하여 Docker 기반 웹 실습을 위한 기본 파일 구조를 준비하였다.  
+이 단계는 이후 컨테이너 이미지 작성 및 웹 페이지 실행 실습에 활용할 수 있도록 구성한 것이다.
+
+---
+
+## 10. 결론
+이번 과제를 통해 Windows 환경에서 Docker Desktop을 설치하고 실행하는 과정을 확인하였다.  
+또한 Docker 버전 확인, 실행 환경 점검, Hello World 컨테이너 실행, Ubuntu 컨테이너 접속 및 Linux 명령어 실습을 수행하였다.  
+이를 통해 Docker의 기본 사용법과 컨테이너 내부에서 Linux 명령어를 다루는 방법을 학습할 수 있었다.
