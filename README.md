@@ -124,7 +124,11 @@ docker-assignment/
 
 ### 1) Docker Version
 <img width="741" height="117" alt="01-docker-version" src="https://github.com/user-attachments/assets/9c920e26-b919-470e-9661-9c02e559f757" />
-
+[Docker Version](./screenshots/01-docker-version.png)
+![Docker Info](./screenshots/02-docker-info.png)
+![Hello World](./screenshots/03-hello-world.png)
+![Ubuntu Run](./screenshots/04-ubuntu-run.png)
+![Linux Commands](./screenshots/05-linux-commands.png)
 
 ### 2) Docker Info
 <img width="390" height="852" alt="02-docker-info" src="https://github.com/user-attachments/assets/5c971847-dedc-493b-abc9-0f9244494a74" />
